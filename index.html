@@ -1,0 +1,113 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <meta name="theme-color" content="#fafafa">
+  <script type="text/javascript" src="/jquery/jquery-3.6.0.min.js">
+  </script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+
+      $('#btn-login').click(function () {
+
+
+        const password = $('#password-id')
+        const username = $('#username-id').val()
+        console.log(password)
+        console.log(username)
+        const domain = "chwdev"
+        const json = {kv: {}};
+        json.kv.username = username
+        json.kv.password = password
+        json.kv.domain = domain
+        const data1 = JSON.stringify(json)
+
+
+        $.ajax({
+          url: "https://apimekan.com/cheweek_dev/api/post/login",
+          type: "POST",
+          data: data1,
+          contentType: "application/json",
+          crossDomain: true,
+          async: false,
+          success: function (result) {
+            alert(result.status + " " + result.message)
+          },
+          error: function (err) {
+            alert(err.status)
+          }
+        });
+      })
+    });
+  </script>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    form {
+      border: 3px solid #f1f1f1;
+    }
+
+    input[type=text], input[type=password] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #04AA6D;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+
+    .container {
+      padding: 16px;
+    }
+
+  </style>
+</head>
+
+<body>
+<form id="form-id" method="post">
+  <div class="container">
+    <label id="username-id">Username</label>
+    <input type="text" placeholder="Enter Username" name="uname" required>
+
+    <label id="password-id">Password</label>
+    <input  type="password" ,placeholder="Enter Password" name="psw" required>
+    <button id="btn-login" type="submit">Login</button>
+  </div>
+</form>
+</body>
+
+</html>
